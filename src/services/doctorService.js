@@ -743,6 +743,40 @@ let createRemedy = (data) => {
     }
   });
 };
+
+let getHistoryPatient = (inputId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.History.findOne({
+        where: {
+          patientId: inputId,
+
+
+        }
+
+
+
+      });
+
+      // if (data && data.length > 0) {
+      //   data.map((item) => {
+      //     item.image = new Buffer(item.image, "base64").toString("binary");
+      //     return item;
+      //   });
+      // }00
+      resolve({
+        errCode: 0,
+        errMessage: "Ok!",
+        data,
+      });
+      console.log('check id parent', inputId)
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctors: getAllDoctors,
@@ -756,4 +790,5 @@ module.exports = {
   sendRemedy: sendRemedy,
   cancelBooking: cancelBooking,
   createRemedy: createRemedy,
+  getHistoryPatient: getHistoryPatient
 };

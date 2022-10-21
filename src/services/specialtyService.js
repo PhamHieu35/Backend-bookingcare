@@ -28,7 +28,7 @@ let createSpecialty = (data) => {
           });
           if (specialtyInfo) {
             specialtyInfo.name = data.name;
-            specialtyInfo.image = data.image;
+            specialtyInfo.image = data.imageBase64;
             specialtyInfo.descriptionHTML = data.descriptionHTML;
             specialtyInfo.descriptionMarkdown = data.descriptionMarkdown;
             specialtyInfo.id = data.specialtyId;

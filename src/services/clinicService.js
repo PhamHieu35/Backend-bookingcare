@@ -31,14 +31,13 @@ let createClinic = (data) => {
           if (clinicInfo) {
             clinicInfo.name = data.name;
             clinicInfo.address = data.address;
-            clinicInfo.image = data.image;
+            clinicInfo.image = data.imageBase64;
             clinicInfo.descriptionHTML = data.descriptionHTML;
             clinicInfo.descriptionMarkdown = data.descriptionMarkdown;
             clinicInfo.id = data.clinicId;
             // doctorMarkdown.updatedAt = new Date();
             await clinicInfo.save();
           }
-          console.log('check id clinic>>>', clinicInfo)
         }
         resolve({
           errCode: 0,
@@ -48,7 +47,7 @@ let createClinic = (data) => {
     } catch (e) {
       reject(e);
     }
-    console.log('check data clinic>>>', data)
+
   });
 };
 

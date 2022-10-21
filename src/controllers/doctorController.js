@@ -17,7 +17,8 @@ let getTopDoctorHome = async (req, res) => {
 
 let getAllDoctors = async (req, res) => {
   try {
-    let doctors = await doctorService.getAllDoctors();
+    let inputId = req.query.id;
+    let doctors = await doctorService.getAllDoctors(inputId);
     return res.status(200).json(doctors);
   } catch (e) {
     console.log(e);
@@ -126,6 +127,22 @@ let getListPatientForDoctor = async (req, res) => {
     });
   }
 };
+let getHistoryPatient = async (req, res) => {
+  try {
+    let inputId = req.query.id;
+    let infor = await doctorService.getHistoryPatient(inputId);
+
+    console.log('check info id parent', inputId)
+    return res.status(200).json(infor);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Error from server",
+    });
+  }
+};
+
 
 let sendRemedy = async (req, res) => {
   try {
@@ -178,4 +195,5 @@ module.exports = {
   sendRemedy: sendRemedy,
   cancelBooking: cancelBooking,
   createRemedy: createRemedy,
+  getHistoryPatient: getHistoryPatient,
 };
